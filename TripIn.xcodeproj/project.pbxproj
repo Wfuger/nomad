@@ -22,6 +22,8 @@
 		7628862E1D25C50E002A8DF1 /* FlightsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7628862D1D25C50E002A8DF1 /* FlightsTableViewCell.swift */; };
 		762886311D25F6E6002A8DF1 /* FlightsDetailTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762886301D25F6E6002A8DF1 /* FlightsDetailTVC.swift */; };
 		762886331D261943002A8DF1 /* FlightDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762886321D261943002A8DF1 /* FlightDetailTableViewCell.swift */; };
+		762886361D27160F002A8DF1 /* YapQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762886351D27160F002A8DF1 /* YapQTableViewCell.swift */; };
+		7628863C1D2754E8002A8DF1 /* YapQDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7628863B1D2754E8002A8DF1 /* YapQDetailViewController.swift */; };
 		765039F41D1AF0CD0072B818 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765039F31D1AF0CD0072B818 /* AppDelegate.swift */; };
 		765039F61D1AF0CD0072B818 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765039F51D1AF0CD0072B818 /* ViewController.swift */; };
 		765039F91D1AF0CD0072B818 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765039F71D1AF0CD0072B818 /* Main.storyboard */; };
@@ -66,6 +68,8 @@
 		7628862D1D25C50E002A8DF1 /* FlightsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsTableViewCell.swift; sourceTree = "<group>"; };
 		762886301D25F6E6002A8DF1 /* FlightsDetailTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsDetailTVC.swift; sourceTree = "<group>"; };
 		762886321D261943002A8DF1 /* FlightDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightDetailTableViewCell.swift; sourceTree = "<group>"; };
+		762886351D27160F002A8DF1 /* YapQTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YapQTableViewCell.swift; sourceTree = "<group>"; };
+		7628863B1D2754E8002A8DF1 /* YapQDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YapQDetailViewController.swift; sourceTree = "<group>"; };
 		765039F01D1AF0CD0072B818 /* TripIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		765039F31D1AF0CD0072B818 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		765039F51D1AF0CD0072B818 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,16 @@
 			name = Flights;
 			sourceTree = "<group>";
 		};
+		762886341D2715EB002A8DF1 /* YapQ */ = {
+			isa = PBXGroup;
+			children = (
+				7628863B1D2754E8002A8DF1 /* YapQDetailViewController.swift */,
+				762886351D27160F002A8DF1 /* YapQTableViewCell.swift */,
+				762885E61D1E55B2002A8DF1 /* YapQViewController.swift */,
+			);
+			name = YapQ;
+			sourceTree = "<group>";
+		};
 		765039E71D1AF0CD0072B818 = {
 			isa = PBXGroup;
 			children = (
@@ -209,10 +223,10 @@
 		76503A251D1AF0E70072B818 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				762886341D2715EB002A8DF1 /* YapQ */,
 				7628862F1D25C66C002A8DF1 /* Flights */,
 				762885F21D1E59C3002A8DF1 /* MainDashTVC.swift */,
 				762885E41D1E5586002A8DF1 /* TripsViewController.swift */,
-				762885E61D1E55B2002A8DF1 /* YapQViewController.swift */,
 				762885EA1D1E55E7002A8DF1 /* HotelsViewController.swift */,
 				762885EC1D1E55F8002A8DF1 /* TrainsViewController.swift */,
 				76503A301D1B95FF0072B818 /* SignupViewController.swift */,
@@ -439,6 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				762886361D27160F002A8DF1 /* YapQTableViewCell.swift in Sources */,
 				762885EB1D1E55E7002A8DF1 /* HotelsViewController.swift in Sources */,
 				762886311D25F6E6002A8DF1 /* FlightsDetailTVC.swift in Sources */,
 				76184B801D1C64F400949CB1 /* API_Manager.swift in Sources */,
@@ -452,6 +467,7 @@
 				762886331D261943002A8DF1 /* FlightDetailTableViewCell.swift in Sources */,
 				762886281D258794002A8DF1 /* AirportTableViewCell.swift in Sources */,
 				76503A311D1B95FF0072B818 /* SignupViewController.swift in Sources */,
+				7628863C1D2754E8002A8DF1 /* YapQDetailViewController.swift in Sources */,
 				7628862A1D25B13B002A8DF1 /* Flight.swift in Sources */,
 				762885F51D21D2EC002A8DF1 /* FlightsTVC.swift in Sources */,
 				762885E51D1E5586002A8DF1 /* TripsViewController.swift in Sources */,

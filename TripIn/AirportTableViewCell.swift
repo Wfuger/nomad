@@ -12,8 +12,6 @@ import SwiftyJSON
 class AirportTableViewCell: UITableViewCell {
     
     @IBOutlet weak var airportLabel: UILabel!
-    @IBOutlet weak var airportCodeLabel: UILabel!
-    
     
     var airport: AnyObject? {
         didSet {

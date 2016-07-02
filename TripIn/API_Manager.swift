@@ -132,42 +132,6 @@ class APIManager {
         }
     }
     
-    func carRentalByAirport(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func carRentalByGeo(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     func trainSchedSearch(url: String, completion: JSONArray -> Void) {
         Alamofire.request(.GET, url).responseJSON { response in
             switch response.result {
@@ -240,26 +204,8 @@ class APIManager {
         }
     }
     
-    func yapQCitySearch(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value!["points_of_interest"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func yapQGeoSearch(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
+    func yapQCitySearch(url: String, city: String, completion: JSONArray -> Void) {
+        Alamofire.request(.GET, baseURL + url + city + "&image_size=MEDIUM&" + API_KEY).responseJSON { response in
             switch response.result {
             case .Success:
                 if let json = response.result.value!["points_of_interest"] as? JSONArray {
