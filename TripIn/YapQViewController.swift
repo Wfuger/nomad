@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YapQViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class YapQViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     var places: JSONArray = []
     
@@ -16,26 +16,49 @@ class YapQViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     
     @IBAction func search(sender: AnyObject) {
-        let city = cityTextField.text?.stringByReplacingOccurrencesOfString(" ", withString: "%20")
-        api.yapQCitySearch("points-of-interest/yapq-search-text?city_name=", city: city!, completion: didLoadPlaces)
+        spinner.startAnimating()
+        spinner.alpha = 1
+        if (cityTextField.text?.isEmpty != false) {
+            let alert = UIAlertController(title: "Ooops!", message: "Please enter a city", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }
+            alert.addAction(okAction)
+            spinner.stopAnimating()
+            spinner.alpha = 0
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            let city = cityTextField.text?.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+            api.yapQCitySearch("points-of-interest/yapq-search-text?city_name=", city: city!, completion: didLoadPlaces)
+        }
         
     }
     
     func didLoadPlaces(places: JSONArray) {
-        self.places = places
-        tableView.alpha = 1
-        tableView.rowHeight = UITableViewAutomaticDimension;
-        tableView.estimatedRowHeight = 90.0;
-        tableView.reloadData()
+        spinner.stopAnimating()
+        spinner.alpha = 0
+        if places.count == 0 {
+            let alert = UIAlertController(title: "Sorry!", message: "No info for that city", preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in }
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            self.places = places
+            tableView.alpha = 1
+            tableView.rowHeight = UITableViewAutomaticDimension;
+            tableView.estimatedRowHeight = 90.0;
+            tableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.alpha = 0
+        spinner.alpha = 0
+        cityTextField.keyboardAppearance = UIKeyboardAppearance.Dark
+        self.cityTextField.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -65,16 +88,12 @@ class YapQViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
         search(self)
         textField.resignFirstResponder()
-        
         return true
-        
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "placeDetail" {
             if let indexpath = tableView.indexPathForSelectedRow {

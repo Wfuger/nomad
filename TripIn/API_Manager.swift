@@ -60,137 +60,20 @@ class APIManager {
         }
     }
     
-    func flightExtSearch(url:String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     func hotelByAirport(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
+        Alamofire.request(.GET, baseURL + url).responseJSON { response in
             switch response.result {
             case .Success:
+                if let errah = response.result.value!["message"] as! String? {
+                    let errahArr: [AnyObject] = ["errah", errah]
+                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
+                        dispatch_async( dispatch_get_main_queue() ) {
+                            completion( errahArr )
+                        }
+                    }
+                }
                 if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func hotelByGeo(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func hotelPropertyCode(url: String, completion: JSONDictionary -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value! as? JSONDictionary {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func trainSchedSearch(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func trainStationInfo(url: String, completion: JSONDictionary -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value! as? JSONDictionary {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func trainExtSearch(url: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
-                }
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func trainAutocomplete(url: String, completion: JSONDictionary -> Void) {
-        Alamofire.request(.GET, url).responseJSON { response in
-            switch response.result {
-            case .Success:
-                if let json = response.result.value! as? JSONDictionary {
                     let priority = DISPATCH_QUEUE_PRIORITY_HIGH
                     dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
                         dispatch_async( dispatch_get_main_queue() ) {
@@ -215,6 +98,16 @@ class APIManager {
                             completion( json )
                         }
                     }
+                }
+                if let errah = response.result.value!["message"] as! String? {
+                    let errahArr: [AnyObject] = ["errah", errah]
+                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
+                        dispatch_async( dispatch_get_main_queue() ) {
+                            completion( errahArr )
+                        }
+                    }
+                    
                 }
             case .Failure(let error):
                 print(error)
