@@ -111,7 +111,6 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         spinner.stopAnimating()
@@ -120,11 +119,12 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
         datePicker.datePickerMode = .CountDownTimer
         datePicker.datePickerMode = .Date
         
+        departingTextField.autocorrectionType = .No
+        flyingToTextField.autocorrectionType = .No
         self.departingTextField.delegate = self
         self.flyingToTextField.delegate = self
         flyingToTextField.keyboardAppearance = UIKeyboardAppearance.Dark
         departingTextField.keyboardAppearance = UIKeyboardAppearance.Dark
-        
         
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -136,7 +136,5 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
         return true
         
     }
-
-    
 
 }

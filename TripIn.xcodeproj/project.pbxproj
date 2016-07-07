@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2FCDBE2D3D9866685C19D5B3 /* Pods_TripIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93100A7BEA253C6D4207D449 /* Pods_TripIn.framework */; };
 		76014FD31D2CB775007C0296 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76014FD21D2CB775007C0296 /* NavigationViewController.swift */; };
+		760D2D5F1D2E0F2500E16855 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760D2D5E1D2E0F2500E16855 /* Constants.swift */; };
 		76184B801D1C64F400949CB1 /* API_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76503A2E1D1AFCCA0072B818 /* API_Manager.swift */; };
 		762885E51D1E5586002A8DF1 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762885E41D1E5586002A8DF1 /* TripsViewController.swift */; };
 		762885E71D1E55B2002A8DF1 /* YapQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762885E61D1E55B2002A8DF1 /* YapQViewController.swift */; };
@@ -36,7 +37,6 @@
 		76503A011D1AF0CD0072B818 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 765039FF1D1AF0CD0072B818 /* LaunchScreen.storyboard */; };
 		76503A0C1D1AF0CD0072B818 /* TripInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76503A0B1D1AF0CD0072B818 /* TripInTests.swift */; };
 		76503A171D1AF0CD0072B818 /* TripInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76503A161D1AF0CD0072B818 /* TripInUITests.swift */; };
-		76503A2A1D1AF8410072B818 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76503A291D1AF8410072B818 /* Constants.swift */; };
 		76503A311D1B95FF0072B818 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76503A301D1B95FF0072B818 /* SignupViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +60,7 @@
 /* Begin PBXFileReference section */
 		5CAC3B0655C3046C30931308 /* Pods-TripIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripIn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TripIn/Pods-TripIn.debug.xcconfig"; sourceTree = "<group>"; };
 		76014FD21D2CB775007C0296 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		760D2D5E1D2E0F2500E16855 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		762885E41D1E5586002A8DF1 /* TripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		762885E61D1E55B2002A8DF1 /* YapQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YapQViewController.swift; sourceTree = "<group>"; };
 		762885E81D1E55D6002A8DF1 /* FlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		76503A121D1AF0CD0072B818 /* TripInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		76503A161D1AF0CD0072B818 /* TripInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripInUITests.swift; sourceTree = "<group>"; };
 		76503A181D1AF0CD0072B818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76503A291D1AF8410072B818 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		76503A2E1D1AFCCA0072B818 /* API_Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API_Manager.swift; sourceTree = "<group>"; };
 		76503A301D1B95FF0072B818 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		93100A7BEA253C6D4207D449 /* Pods_TripIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,7 +278,7 @@
 		76503A281D1AF82D0072B818 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				76503A291D1AF8410072B818 /* Constants.swift */,
+				760D2D5E1D2E0F2500E16855 /* Constants.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -473,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				760D2D5F1D2E0F2500E16855 /* Constants.swift in Sources */,
 				764BEE9B1D2A093A0029F491 /* HotelTableViewCell.swift in Sources */,
 				762886361D27160F002A8DF1 /* YapQTableViewCell.swift in Sources */,
 				762885EB1D1E55E7002A8DF1 /* HotelsViewController.swift in Sources */,
@@ -496,7 +497,6 @@
 				762885E51D1E5586002A8DF1 /* TripsViewController.swift in Sources */,
 				764BEEA11D2A2ED90029F491 /* AmenityTableViewCell.swift in Sources */,
 				762885E91D1E55D6002A8DF1 /* FlightsViewController.swift in Sources */,
-				76503A2A1D1AF8410072B818 /* Constants.swift in Sources */,
 				7628862E1D25C50E002A8DF1 /* FlightsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,7 +646,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TripIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.boogiesquad.Nomad;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boogiesquad.TripIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -661,7 +661,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TripIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.boogiesquad.Nomad;
+				PRODUCT_BUNDLE_IDENTIFIER = com.boogiesquad.TripIn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

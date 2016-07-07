@@ -48,12 +48,14 @@ class FlightDetailTableViewCell: UITableViewCell {
             seatsRemLabel.text = ""
         }
         if let depTime = flight!["departs_at"] as? String {
-            depTimeLabel.text = depTime
+            let dTime = depTime.stringByReplacingOccurrencesOfString("T", withString: " ")
+            depTimeLabel.text = dTime
         } else {
             depTimeLabel.text = ""
         }
         if let arrTime = flight!["arrives_at"] as? String {
-            arrTimeLabel.text = arrTime
+            let aTime = arrTime.stringByReplacingOccurrencesOfString("T", withString: " ")
+            arrTimeLabel.text = aTime
         } else {
             arrTimeLabel.text = ""
         }
