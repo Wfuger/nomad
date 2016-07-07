@@ -15,7 +15,7 @@ class FlightsTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.clearsSelectionOnViewWillAppear = true
         
     }
 

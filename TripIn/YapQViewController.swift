@@ -59,7 +59,12 @@ class YapQViewController: UIViewController, UITableViewDelegate, UITableViewData
         spinner.alpha = 0
         cityTextField.keyboardAppearance = UIKeyboardAppearance.Dark
         self.cityTextField.delegate = self
-        
+        if let indexPaths = self.tableView.indexPathsForSelectedRows {
+            for indexPath in indexPaths {
+                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            }
+        }
+        tableView.reloadData()
         tableView.delegate = self
         tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -85,6 +90,10 @@ class YapQViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -93,6 +102,8 @@ class YapQViewController: UIViewController, UITableViewDelegate, UITableViewData
         textField.resignFirstResponder()
         return true
     }
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "placeDetail" {

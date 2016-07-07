@@ -25,8 +25,9 @@ class YapQTableViewCell: UITableViewCell {
         } else {
             titleLabel.text = ""
         }
-        if let descrip = place!["details"]!!["short_description"] as? String {
-            descriptionLabel.text = descrip
+        if let descrip = place!["details"] as? JSONDictionary,
+            let desc = descrip["short_description"] as? String {
+                descriptionLabel.text = desc
         } else {
             descriptionLabel.text = ""
         }

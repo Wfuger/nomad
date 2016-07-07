@@ -22,6 +22,10 @@ class HotelVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MKM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension;
+        tableView.estimatedRowHeight = 40.0;
+        tableView.reloadData()
         if let hotelname = hotel!["property_name"] as? String {
             hotelName.text = hotelname
         }

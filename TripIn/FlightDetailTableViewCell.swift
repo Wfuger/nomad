@@ -41,8 +41,9 @@ class FlightDetailTableViewCell: UITableViewCell {
         } else {
             arrAirportLabel.text = ""
         }
-        if let seats = flight!["booking_info"]!!["seats_remaining"] as? String {
-            seatsRemLabel.text = "Seats Left: " + seats
+        if let seats = flight!["booking_info"] as? JSONDictionary,
+            let Seats = seats["seats_remaining"] as? String {
+            seatsRemLabel.text = "Seats Left: " + Seats
         } else {
             seatsRemLabel.text = ""
         }

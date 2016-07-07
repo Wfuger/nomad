@@ -23,8 +23,9 @@ class FlightsTableViewCell: UITableViewCell {
     
     
     func updateCell() {
-        if let price = flight!["fare"]!!["total_price"] as? String {
-            priceLabel.text = "Price: $" + price
+        if let price = flight!["fare"] as? JSONDictionary,
+            let Price = price["total_price"] as? String {
+            priceLabel.text = "Price: $" + Price
         } else {
             priceLabel.text = ""
         }

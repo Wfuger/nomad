@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (3.4.1)
+  - SpeechKit (2.1.6)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - SpeechKit
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  SpeechKit: 0ce5adada9a690a65295e0f5f1a4705dae2f2350
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: c3c0b88cdbf88a6957ff5a6f22f576a80f011c90
+PODFILE CHECKSUM: f6fdb3824e43b9602663575675e3430820ae53e4
 
 COCOAPODS: 1.0.1

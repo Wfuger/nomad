@@ -138,6 +138,7 @@ class HotelsViewController: UIViewController, UITextFieldDelegate {
         self.hotels = hotels
         spinner.stopAnimating()
         spinner.alpha = 0
+        print(hotels)
         if hotels.count == 0 {
             let alert = UIAlertController(title: "Ooops!", message: "No results found try again.", preferredStyle: .Alert)
             let okAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }

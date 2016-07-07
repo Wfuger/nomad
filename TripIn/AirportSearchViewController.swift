@@ -19,7 +19,6 @@ class AirportSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     func didLoadAirports( airports: JSONArray) {
         self.airports = airports
-//        print("airports\(airports)")
         tableView.alpha = 1
         tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.estimatedRowHeight = 90.0;

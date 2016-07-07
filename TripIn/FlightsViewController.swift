@@ -132,11 +132,7 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == flyingToTextField {
-            searchButton(self)
-        }
         textField.resignFirstResponder()
-        
         return true
         
     }

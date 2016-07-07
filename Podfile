@@ -5,4 +5,5 @@ use_frameworks!
 target 'TripIn' do
   pod 'SwiftyJSON'
   pod 'Alamofire', '~> 3.4'
+  pod 'SpeechKit'
 end
