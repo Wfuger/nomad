@@ -1,18 +1,27 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (4.0.0)
   - SpeechKit (2.1.6)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.4)
+  - Alamofire (~> 4.0)
   - SpeechKit
-  - SwiftyJSON
+  - SwiftyJSON (from `https://github.com/IBM-Swift/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/IBM-Swift/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 73b523a107b798021ca9af74b5f7c20e435c8809
+    :git: https://github.com/IBM-Swift/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
   SpeechKit: 0ce5adada9a690a65295e0f5f1a4705dae2f2350
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: f6fdb3824e43b9602663575675e3430820ae53e4
+PODFILE CHECKSUM: 9203c624b2931f0024a07520dad97a07d9ac1546
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

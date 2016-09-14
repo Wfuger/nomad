@@ -17,29 +17,29 @@ class HotelsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var inDatePicker: UIDatePicker!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    @IBAction func searchButton(sender: AnyObject) {
+    @IBAction func searchButton(_ sender: AnyObject) {
         
         spinner.alpha = 1
         spinner.startAnimating()
         if (airportTextField.text?.isEmpty != false) {
-            let alert = UIAlertController(title: "Ooops!", message: "Airport can't be empty", preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }
+            let alert = UIAlertController(title: "Ooops!", message: "Airport can't be empty", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { action -> Void in }
             alert.addAction(okAction)
             spinner.stopAnimating()
             spinner.alpha = 0
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-            let inDateStr = dateFormatter.stringFromDate(inDatePicker.date)
-            var inDateArr = inDateStr.characters.split(" ").map(String.init)
-            inDateArr.insert(inDateArr[2], atIndex: 0)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = DateFormatter.Style.medium
+            let inDateStr = dateFormatter.string(from: inDatePicker.date)
+            var inDateArr = inDateStr.characters.split(separator: " ").map(String.init)
+            inDateArr.insert(inDateArr[2], at: 0)
             inDateArr.removeLast()
-            let outDateStr = dateFormatter.stringFromDate(outDatePicker.date)
-            var outDateArr = outDateStr.characters.split(" ").map(String.init)
-            outDateArr.insert(outDateArr[2], atIndex: 0)
+            let outDateStr = dateFormatter.string(from: outDatePicker.date)
+            var outDateArr = outDateStr.characters.split(separator: " ").map(String.init)
+            outDateArr.insert(outDateArr[2], at: 0)
             outDateArr.removeLast()
-            for (index, item) in inDateArr.enumerate() {
+            for (index, item) in inDateArr.enumerated() {
                 if index == 1 {
                     switch item {
                     case "Jan":
@@ -76,13 +76,13 @@ class HotelsViewController: UIViewController, UITextFieldDelegate {
                     let chars = item.characters.count
                     if chars <= 2 {
                         formattedDay = "0" + item
-                        inDateArr[index] = formattedDay.stringByReplacingOccurrencesOfString(",", withString: "")
+                        inDateArr[index] = formattedDay.replacingOccurrences(of: ",", with: "")
                     } else {
-                        inDateArr[index] = item.stringByReplacingOccurrencesOfString(",", withString: "")
+                        inDateArr[index] = item.replacingOccurrences(of: ",", with: "")
                     }
                 }
             }
-            for (index, item) in outDateArr.enumerate() {
+            for (index, item) in outDateArr.enumerated() {
                 if index == 1 {
                     switch item {
                     case "Jan":
@@ -119,14 +119,14 @@ class HotelsViewController: UIViewController, UITextFieldDelegate {
                     let chars = item.characters.count
                     if chars <= 2 {
                         formattedDay = "0" + item
-                        outDateArr[index] = formattedDay.stringByReplacingOccurrencesOfString(",", withString: "")
+                        outDateArr[index] = formattedDay.replacingOccurrences(of: ",", with: "")
                     } else {
-                        outDateArr[index] = item.stringByReplacingOccurrencesOfString(",", withString: "")
+                        outDateArr[index] = item.replacingOccurrences(of: ",", with: "")
                     }
                 }
             }
-            let inFormattedDateStr = inDateArr.joinWithSeparator("-")
-            let outFormattedDateStr = outDateArr.joinWithSeparator("-")
+            let inFormattedDateStr = inDateArr.joined(separator: "-")
+            let outFormattedDateStr = outDateArr.joined(separator: "-")
             let url = "hotels/search-airport?\(API_KEY)&location=\(airportTextField.text!)&check_in=\(inFormattedDateStr)&check_out=\(outFormattedDateStr)"
             api.hotelByAirport(url, completion: didLoadHotels)
         }
@@ -134,23 +134,23 @@ class HotelsViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func didLoadHotels(hotels: JSONArray) {
+    func didLoadHotels(_ hotels: JSONArray) {
         self.hotels = hotels
         spinner.stopAnimating()
         spinner.alpha = 0
         print(hotels)
         if hotels.count == 0 {
-            let alert = UIAlertController(title: "Ooops!", message: "No results found try again.", preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }
+            let alert = UIAlertController(title: "Ooops!", message: "No results found try again.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { action -> Void in }
             alert.addAction(okAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else if hotels[0] as? String == "errah" {
-            let alert = UIAlertController(title: "Ooops!", message: hotels[1] as? String, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }
+            let alert = UIAlertController(title: "Ooops!", message: hotels[1] as? String, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { action -> Void in }
             alert.addAction(okAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else {
-            self.performSegueWithIdentifier("hotelsSegue", sender: self)
+            self.performSegue(withIdentifier: "hotelsSegue", sender: self)
         }
         
     }
@@ -160,14 +160,14 @@ class HotelsViewController: UIViewController, UITextFieldDelegate {
         spinner.alpha = 0
         spinner.stopAnimating()
         self.airportTextField.delegate = self
-        airportTextField.keyboardAppearance = UIKeyboardAppearance.Dark
-        inDatePicker.setValue(UIColor.whiteColor(), forKey: "textColor")
-        inDatePicker.datePickerMode = .CountDownTimer
-        inDatePicker.datePickerMode = .Date
+        airportTextField.keyboardAppearance = UIKeyboardAppearance.dark
+        inDatePicker.setValue(UIColor.white, forKey: "textColor")
+        inDatePicker.datePickerMode = .countDownTimer
+        inDatePicker.datePickerMode = .date
         
-        outDatePicker.setValue(UIColor.whiteColor(), forKey: "textColor")
-        outDatePicker.datePickerMode = .CountDownTimer
-        outDatePicker.datePickerMode = .Date
+        outDatePicker.setValue(UIColor.white, forKey: "textColor")
+        outDatePicker.datePickerMode = .countDownTimer
+        outDatePicker.datePickerMode = .date
 
         // Do any additional setup after loading the view.
     }
@@ -177,19 +177,19 @@ class HotelsViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "hotelsSegue" {
-            let controller = segue.destinationViewController as! HotelsTVC
+            let controller = segue.destination as! HotelsTVC
             controller.hotels = self.hotels
         }
     }

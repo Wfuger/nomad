@@ -12,7 +12,7 @@ import UIKit
 
 class SignupViewController: UIViewController {
 
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
     let api = APIManager()
@@ -28,8 +28,8 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userName.keyboardAppearance = UIKeyboardAppearance.Dark
-        password.keyboardAppearance = UIKeyboardAppearance.Dark
+        userName.keyboardAppearance = UIKeyboardAppearance.dark
+        password.keyboardAppearance = UIKeyboardAppearance.dark
         
     }
     

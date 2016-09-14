@@ -57,18 +57,18 @@ class HotelVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MKM
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return amenities.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Amenity", forIndexPath: indexPath) as! AmenityTableViewCell
-        cell.amenity = amenities[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Amenity", for: indexPath) as! AmenityTableViewCell
+        cell.amenity = amenities[(indexPath as NSIndexPath).row]
         return cell
     }
 

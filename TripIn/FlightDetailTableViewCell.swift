@@ -48,13 +48,13 @@ class FlightDetailTableViewCell: UITableViewCell {
             seatsRemLabel.text = ""
         }
         if let depTime = flight!["departs_at"] as? String {
-            let dTime = depTime.stringByReplacingOccurrencesOfString("T", withString: " ")
+            let dTime = depTime.replacingOccurrences(of: "T", with: " ")
             depTimeLabel.text = dTime
         } else {
             depTimeLabel.text = ""
         }
         if let arrTime = flight!["arrives_at"] as? String {
-            let aTime = arrTime.stringByReplacingOccurrencesOfString("T", withString: " ")
+            let aTime = arrTime.replacingOccurrences(of: "T", with: " ")
             arrTimeLabel.text = aTime
         } else {
             arrTimeLabel.text = ""
@@ -66,7 +66,7 @@ class FlightDetailTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

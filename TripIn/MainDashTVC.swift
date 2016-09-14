@@ -17,7 +17,7 @@ class MainDashTVC: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableView.estimatedRowHeight = 110.0;
     }
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
 

@@ -13,11 +13,11 @@ class AirportSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var airportTextField: UITextField!
     
-    var airports: JSONArray = []
+    var airports = JSONArray()
     
     var api = APIManager()
     
-    func didLoadAirports( airports: JSONArray) {
+    func didLoadAirports( _ airports: JSONArray) {
         self.airports = airports
         tableView.alpha = 1
         tableView.rowHeight = UITableViewAutomaticDimension;
@@ -36,13 +36,13 @@ class AirportSearchViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.dataSource = self
         
         self.airportTextField.delegate = self
-        airportTextField.keyboardAppearance = UIKeyboardAppearance.Dark
+        airportTextField.keyboardAppearance = UIKeyboardAppearance.dark
         
 
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func search(sender: AnyObject) {
+    @IBAction func search(_ sender: AnyObject) {
         api.airportAutoCall("airports/autocomplete?", term: "&term=" + airportTextField.text!, completion: didLoadAirports)
         
     }
@@ -53,26 +53,26 @@ class AirportSearchViewController: UIViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return airports.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell { 
-        let cell = tableView.dequeueReusableCellWithIdentifier("airport", forIndexPath: indexPath) as! AirportTableViewCell
-        cell.airport = airports[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "airport", for: indexPath) as! AirportTableViewCell
+        cell.airport = airports[(indexPath as NSIndexPath).row]
         return cell
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         search(self)
         textField.resignFirstResponder()

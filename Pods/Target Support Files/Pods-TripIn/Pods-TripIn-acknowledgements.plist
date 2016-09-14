@@ -34,6 +34,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>Alamofire</string>
 			<key>Type</key>
@@ -119,6 +121,8 @@ Documentation, and all related technology, algorithms, and information contained
 reasonable notice to the address you provided upon signup, including to your email address. If you do not agree to such changes in this Agreement, your only remedy is to cease using the Software, Access Method, and/or and Service. Your continued use of any part of the Software, Access Method, and/or Service after Nuance has provided you with reasonable notice of such change for your review will be considered your acceptance of such change.
 
 17. GENERAL LEGAL TERMS. You may not assign or otherwise transfer any rights or obligations under this Agreement without Nuance&#8217;s prior written consent. This Agreement is the entire agreement between Nuance and you and supersedes any other communications or advertising with respect to the Software, Access Method, and Service. If any provision of this Agreement is held invalid or unenforceable, such provision shall be revised to the extent necessary to cure the invalidity or unenforceability, and the remainder of this Agreement shall continue in full force and effect. The failure of Nuance to exercise or enforce any right or provision of this Agreement shall not constitute a waiver of such right or provision. Sections 4, 5, 6, 8, 9, 10, 15 and 17 of this Agreement shall survive the expiration or termination of this Agreement.</string>
+			<key>License</key>
+			<string>Commercial</string>
 			<key>Title</key>
 			<string>SpeechKit</string>
 			<key>Type</key>
@@ -148,6 +152,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>SwiftyJSON</string>
 			<key>Type</key>

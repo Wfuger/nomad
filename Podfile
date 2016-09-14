@@ -1,9 +1,9 @@
 # Uncomment this line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 
 target 'TripIn' do
-  pod 'SwiftyJSON'
-  pod 'Alamofire', '~> 3.4'
+  pod 'SwiftyJSON', :git => 'https://github.com/IBM-Swift/SwiftyJSON.git'
+  pod 'Alamofire', '~> 4.0'
   pod 'SpeechKit'
 end

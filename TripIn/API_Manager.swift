@@ -13,103 +13,107 @@ import SwiftyJSON
 class APIManager {
     let baseURL = "http://api.sandbox.amadeus.com/v1.2/"
     
-    func airportAutoCall(route: String, term: String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, (baseURL + route + API_KEY + term)).responseJSON { response in
+    func airportAutoCall(_ route: String, term: String, completion: @escaping (JSONArray) -> Void) {
+        Alamofire.request("\(baseURL)\(route)\(API_KEY)\(term)/get").responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let json = response.result.value as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
+                    let priority = DispatchQueue.GlobalQueuePriority.high
+                    DispatchQueue.global( priority: priority).async {
+                        DispatchQueue.main.async {
                             completion( json )
                         }
                     }
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
             }
         }
     }
     
-    func flightLowFareSearch(route:String, origin:String, destination:String, date:String, completion: JSONArray -> Void) {
-        Alamofire.request(.GET, (baseURL + route + "origin=" + origin + "&destination=" + destination + "&departure_date=" + date + "&" + API_KEY)).responseJSON { response in
+    func flightLowFareSearch(_ route:String, origin:String, destination:String, date:String, completion: @escaping (JSONArray) -> Void) {
+        Alamofire.request("\(baseURL)\(route)origin=\(origin)&destination=\(destination)&departure_date=\(date)&\(API_KEY)").responseJSON { response in
             print(response.result.value)
             switch response.result {
-            case .Success:
-                if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
-                            completion( json )
-                        }
-                    }
+            case .success:
+                let result = response.result
+                let value = result.value as? JSONDictionary
+                if let json = value?["results"] as? JSONArray {
+                    let priority = DispatchQoS.userInitiated.qosClass
+                    DispatchQoS.init(qosClass: priority, relativePriority: 1)
+                    
+//                    DispatchQueue.global( priority: priority).async {
+//                        DispatchQueue.main.async {
+//                            completion( json )
+//                        }
+//                    }
                 }
                 if let errah = response.result.value!["message"] as! String? {
                     let errahArr: [AnyObject] = ["errah", errah]
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
+                    let priority = DispatchQueue.GlobalQueuePriority.high
+                    DispatchQueue.global( priority: priority).async {
+                        DispatchQueue.main.async {
                             completion( errahArr )
                         }
                     }
 
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
             }
         }
     }
     
-    func hotelByAirport(url: String, completion: JSONArray -> Void) {
+    func hotelByAirport(_ url: String, completion: @escaping (JSONArray) -> Void) {
         Alamofire.request(.GET, baseURL + url).responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let errah = response.result.value!["message"] as! String? {
                     let errahArr: [AnyObject] = ["errah", errah]
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
+                    let priority = DispatchQueue.GlobalQueuePriority.high
+                    DispatchQueue.global( priority: priority).async {
+                        DispatchQueue.main.async {
                             completion( errahArr )
                         }
                     }
                 }
                 if let json = response.result.value!["results"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
+                    let priority = DispatchQueue.GlobalQueuePriority.high
+                    DispatchQueue.global( priority: priority).async {
+                        DispatchQueue.main.async {
                             completion( json )
                         }
                     }
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
             }
         }
     }
     
-    func yapQCitySearch(url: String, city: String, completion: JSONArray -> Void) {
+    func yapQCitySearch(_ url: String, city: String, completion: @escaping (JSONArray) -> Void) {
         Alamofire.request(.GET, baseURL + url + city + "&image_size=MEDIUM&" + API_KEY).responseJSON { response in
             switch response.result {
-            case .Success:
+            case .success:
                 if let json = response.result.value!["points_of_interest"] as? JSONArray {
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
+                    let priority = DispatchQueue.GlobalQueuePriority.high
+                    DispatchQueue.global( priority: priority).async {
+                        DispatchQueue.main.async {
                             completion( json )
                         }
                     }
                 }
                 if let errah = response.result.value!["message"] as! String? {
                     let errahArr: [AnyObject] = ["errah", errah]
-                    let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                    dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
-                        dispatch_async( dispatch_get_main_queue() ) {
+                    let priority = DispatchQueue.GlobalQueuePriority.high
+                    DispatchQueue.global( priority: priority).async {
+                        DispatchQueue.main.async {
                             completion( errahArr )
                         }
                     }
                     
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
             }
         }

@@ -40,13 +40,13 @@ class YapQDetailViewController: UIViewController, MKMapViewDelegate {
             titleLabel.text = ""
         }
         if let imageUrl = thing["main_image"] as? String {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+            DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+                let data = try? Data(contentsOf: URL(string: imageUrl)!)
                 var image: UIImage?
                 if data != nil {
                     image = UIImage(data: data!)
                 }
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.placeImage.image = image
                 }
             }
@@ -58,10 +58,12 @@ class YapQDetailViewController: UIViewController, MKMapViewDelegate {
         let longDelta:CLLocationDegrees = 0.09
         let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
 
-        if let lat = thing["location"]!!["latitude"] as? CLLocationDegrees {
-            latitude = lat
-            if let long = thing["location"]!!["longitude"] as? CLLocationDegrees {
-                longitude = long
+        if let lat = thing["location"] as? JSONDictionary,
+            let _lat = lat["latitude"] as? CLLocationDegrees {
+            latitude = _lat
+            if let long = thing["location"] as? JSONDictionary,
+                let _long = long["longitude"] as? CLLocationDegrees {
+                longitude = _long
                 let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
                 let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)
                 map.setRegion(region, animated: false)
@@ -70,8 +72,9 @@ class YapQDetailViewController: UIViewController, MKMapViewDelegate {
                 map.addAnnotation(annotation)
             }
         }
-        if let desc = thing["details"]!!["description"] as? String {
-            descriptionLabel.text = desc
+        if let desc = thing["details"] as? JSONDictionary,
+            let _description = desc["description"] as? String {
+            descriptionLabel.text = _description
         }
         
         

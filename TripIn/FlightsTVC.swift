@@ -19,29 +19,29 @@ class FlightsTVC: UITableViewController {
         
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return flights.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("flight", forIndexPath: indexPath) as! FlightsTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "flight", for: indexPath) as! FlightsTableViewCell
 
-        cell.flight = flights[indexPath.row]
+        cell.flight = flights[(indexPath as NSIndexPath).row]
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "flightDetails" {
             if let indexpath = tableView.indexPathForSelectedRow {
-                let flight = flights[indexpath.row]["itineraries"]!![0]["outbound"]!!["flights"]!!
-                let controller = segue.destinationViewController as! FlightsDetailTVC
+                let flight = flights[(indexpath as NSIndexPath).row]["itineraries"]!![0]["outbound"]!!["flights"]!!
+                let controller = segue.destination as! FlightsDetailTVC
                 controller.flights = flight as! [AnyObject]
 
             }

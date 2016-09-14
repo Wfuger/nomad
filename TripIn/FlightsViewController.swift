@@ -20,26 +20,26 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
     var api = APIManager()
     var flights: JSONArray = []
 
-    @IBAction func searchButton(sender: AnyObject) {
+    @IBAction func searchButton(_ sender: AnyObject) {
         spinner.startAnimating()
         if (departingTextField.text?.isEmpty != false || flyingToTextField.text?.isEmpty != false) {
-            let alert = UIAlertController(title: "Ooops!", message: "Need to fill out both airport fields", preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Cancel) { action -> Void in }
+            let alert = UIAlertController(title: "Ooops!", message: "Need to fill out both airport fields", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .cancel) { action -> Void in }
             alert.addAction(okAction)
             spinner.stopAnimating()
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else {
             
             
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-            let dateStr = dateFormatter.stringFromDate(datePicker.date)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = DateFormatter.Style.medium
+            let dateStr = dateFormatter.string(from: datePicker.date)
             
-            var dateArr = dateStr.characters.split(" ").map(String.init)
-            dateArr.insert(dateArr[2], atIndex: 0)
+            var dateArr = dateStr.characters.split(separator: " ").map(String.init)
+            dateArr.insert(dateArr[2], at: 0)
             dateArr.removeLast()
             
-            for (index, item) in dateArr.enumerate() {
+            for (index, item) in dateArr.enumerated() {
                 if index == 1 {
                     switch item {
                     case "Jan":
@@ -76,13 +76,13 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
                     let chars = item.characters.count
                     if chars <= 2 {
                         formattedDay = "0" + item
-                        dateArr[index] = formattedDay.stringByReplacingOccurrencesOfString(",", withString: "")
+                        dateArr[index] = formattedDay.replacingOccurrences(of: ",", with: "")
                     } else {
-                        dateArr[index] = item.stringByReplacingOccurrencesOfString(",", withString: "")
+                        dateArr[index] = item.replacingOccurrences(of: ",", with: "")
                     }
                 }
             }
-            let formattedDateStr = dateArr.joinWithSeparator("-")
+            let formattedDateStr = dateArr.joined(separator: "-")
             
             //        print(formattedDateStr)
             api.flightLowFareSearch("flights/low-fare-search?", origin: departingTextField.text!, destination: flyingToTextField.text!, date: formattedDateStr, completion: didLoadFlights)
@@ -90,23 +90,23 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    func didLoadFlights(flights: JSONArray) {
+    func didLoadFlights(_ flights: JSONArray) {
         spinner.stopAnimating()
         spinner.alpha = 0
         if let flightsErrah = flights[1] as? String {
-            let alert = UIAlertController(title: "Sorry!", message: flightsErrah, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in }
+            let alert = UIAlertController(title: "Sorry!", message: flightsErrah, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { action -> Void in }
             alert.addAction(okAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else {
             self.flights = flights
-            self.performSegueWithIdentifier("flightsTVCSegue", sender: self)
+            self.performSegue(withIdentifier: "flightsTVCSegue", sender: self)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "flightsTVCSegue" {
-            let controller = segue.destinationViewController as! FlightsTVC
+            let controller = segue.destination as! FlightsTVC
             controller.flights = self.flights
         }
     }
@@ -115,23 +115,23 @@ class FlightsViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         spinner.stopAnimating()
         
-        datePicker.setValue(UIColor.whiteColor(), forKeyPath: "textColor")
-        datePicker.datePickerMode = .CountDownTimer
-        datePicker.datePickerMode = .Date
+        datePicker.setValue(UIColor.white, forKeyPath: "textColor")
+        datePicker.datePickerMode = .countDownTimer
+        datePicker.datePickerMode = .date
         
-        departingTextField.autocorrectionType = .No
-        flyingToTextField.autocorrectionType = .No
+        departingTextField.autocorrectionType = .no
+        flyingToTextField.autocorrectionType = .no
         self.departingTextField.delegate = self
         self.flyingToTextField.delegate = self
-        flyingToTextField.keyboardAppearance = UIKeyboardAppearance.Dark
-        departingTextField.keyboardAppearance = UIKeyboardAppearance.Dark
+        flyingToTextField.keyboardAppearance = UIKeyboardAppearance.dark
+        departingTextField.keyboardAppearance = UIKeyboardAppearance.dark
         
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
         
