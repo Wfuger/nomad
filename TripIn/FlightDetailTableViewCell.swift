@@ -25,35 +25,41 @@ class FlightDetailTableViewCell: UITableViewCell {
     }
     
     func updateCell() {
-        print(flight!)
-        if let depAirport = flight!["origin"]!!["airport"] as? String {
+        
+
+        if let origin = flight?["origin"] as? JSONDictionary,
+            let depAirport = origin["airport"] as? String {
             depAirportLabel.text = depAirport
         } else {
             depAirportLabel.text = ""
         }
-        if let travelClass = flight!["booking_info"]!!["travel_class"] as? String {
+
+        if let bookingInfo = flight?["booking_info"] as? JSONDictionary,
+            let travelClass = bookingInfo["travel_class"] as? String {
             classLabel.text = travelClass
         } else {
             classLabel.text = ""
         }
-        if let arrAirport = flight!["destination"]!!["airport"] as? String {
+
+        if let dest = flight?["destination"] as? JSONDictionary,
+            let arrAirport = dest["airport"] as? String {
             arrAirportLabel.text = arrAirport
         } else {
             arrAirportLabel.text = ""
         }
-        if let seats = flight!["booking_info"] as? JSONDictionary,
+        if let seats = flight?["booking_info"] as? JSONDictionary,
             let Seats = seats["seats_remaining"] as? String {
             seatsRemLabel.text = "Seats Left: " + Seats
         } else {
             seatsRemLabel.text = ""
         }
-        if let depTime = flight!["departs_at"] as? String {
+        if let depTime = flight?["departs_at"] as? String {
             let dTime = depTime.replacingOccurrences(of: "T", with: " ")
             depTimeLabel.text = dTime
         } else {
             depTimeLabel.text = ""
         }
-        if let arrTime = flight!["arrives_at"] as? String {
+        if let arrTime = flight?["arrives_at"] as? String {
             let aTime = arrTime.replacingOccurrences(of: "T", with: " ")
             arrTimeLabel.text = aTime
         } else {

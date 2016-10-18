@@ -16,20 +16,23 @@ class Flight {
     
     init(data: JSONDictionary) {
         
-        if let price = data["fare"]!["total_price"]! as? String {
+        if let fare = data["fare"] as? JSONDictionary,
+            let price = fare["total_price"] as? String
+        {
             self._price = price
         } else {
             self._price = ""
         }
-        
-        if let flights = data["itineraries"]![0]["outbound"]!!["flights"] as? JSONArray {
+        if let itin = data["itineraries"] as? JSONArray,
+        let obound = itin[0] as? JSONDictionary,
+        let outbound = obound["outbound"] as? JSONDictionary,
+        let flights = outbound["flights"] as? JSONArray
+        {
             self._flights = flights
         } else {
             self._flights = [AnyObject]()
         }
         
-        
     }
-    
     
 }

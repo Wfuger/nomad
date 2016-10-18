@@ -37,9 +37,11 @@ class HotelVC: UIViewController, UITableViewDelegate, UITableViewDataSource, MKM
         let latDelta:CLLocationDegrees = 0.09
         let longDelta:CLLocationDegrees = 0.09
         let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        if let lat = hotel!["location"]!!["latitude"] as? CLLocationDegrees {
+        if let location = hotel?["location"] as? JSONDictionary,
+            let lat = location["latitude"] as? CLLocationDegrees {
             latitude = lat
-            if let long = hotel!["location"]!!["longitude"] as? CLLocationDegrees {
+            if let _location = hotel?["location"] as? JSONDictionary,
+                let long = _location["longitude"] as? CLLocationDegrees {
                 longitude = long
                 let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
                 let region:MKCoordinateRegion = MKCoordinateRegionMake(location, span)

@@ -40,7 +40,11 @@ class APIManager {
                 let value = result.value as? JSONDictionary
                 if let json = value?["results"] as? JSONArray {
                     let priority = DispatchQoS.userInitiated.qosClass
-                    DispatchQoS.init(qosClass: priority, relativePriority: 1)
+                    DispatchQoS.init(qosClass: priority, relativePriority: 1) {
+                        DispatchQueue.main.async {
+                            completion( json )
+                        }
+                    }
                     
 //                    DispatchQueue.global( priority: priority).async {
 //                        DispatchQueue.main.async {

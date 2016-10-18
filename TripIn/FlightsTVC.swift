@@ -40,12 +40,17 @@ class FlightsTVC: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "flightDetails" {
             if let indexpath = tableView.indexPathForSelectedRow {
-                let flight = flights[(indexpath as NSIndexPath).row]["itineraries"]!![0]["outbound"]!!["flights"]!!
-                let controller = segue.destination as! FlightsDetailTVC
-                controller.flights = flight as! [AnyObject]
-
+                
+                if let itin = flights[(indexpath as NSIndexPath).row] as? JSONDictionary,
+                    let Itiner = itin["itineraries"] as? JSONArray,
+                    let outbound = Itiner[0] as? JSONDictionary,
+                    let Outbound = outbound["outbound"] as? JSONDictionary,
+                    let flight = Outbound["flights"] as? JSONArray {
+                    
+                        let controller = segue.destination as! FlightsDetailTVC
+                        controller.flights = flight
+                }
             }
         }
     }
-
 }

@@ -24,11 +24,16 @@ class HotelTableViewCell: UITableViewCell {
         if let name = hotel!["property_name"] as? String {
             hotelName.text = name
         }
-        if let phone = hotel!["contacts"]!![0]["detail"] as? String {
+
+        if let contacts = hotel?["contacts"] as? JSONArray,
+            let details = contacts[0] as? JSONDictionary,
+            let phone = details["detail"] as? String {
             phoneNum.text = phone
         }
-        if let rate = hotel!["min_daily_rate"]!!["amount"] as? String {
-            minRate.text = "As Low As: $\(rate)"
+        
+        if let rate = hotel?["min_daily_rate"] as? JSONDictionary,
+            let _rate = rate["amount"] as? String {
+            minRate.text = "As Low As: $\(_rate)"
         }
         
     }
